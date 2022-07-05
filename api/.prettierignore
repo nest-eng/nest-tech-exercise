@@ -1,0 +1,3 @@
+src/@generated/graphql.ts
+src/@generated/prisma-nestjs-graphql/index.ts
+*.hbs

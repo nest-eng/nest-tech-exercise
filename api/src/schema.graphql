@@ -1,0 +1,1320 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Account {
+  Orders: [Order!]
+  Patients: [Patient!]
+  _count: AccountCount!
+  createdAt: DateTime!
+  id: ID!
+  lang: String!
+  settings: JSON!
+  timezone: String!
+  updatedAt: DateTime!
+}
+
+type AccountCount {
+  Orders: Int!
+  Patients: Int!
+}
+
+type AccountCountAggregate {
+  _all: Int!
+  createdAt: Int!
+  id: Int!
+  lang: Int!
+  settings: Int!
+  timezone: Int!
+  updatedAt: Int!
+}
+
+input AccountCreateNestedOneWithoutOrdersInput {
+  connect: AccountWhereUniqueInput
+  connectOrCreate: AccountCreateOrConnectWithoutOrdersInput
+  create: AccountCreateWithoutOrdersInput
+}
+
+input AccountCreateNestedOneWithoutPatientsInput {
+  connect: AccountWhereUniqueInput
+  connectOrCreate: AccountCreateOrConnectWithoutPatientsInput
+  create: AccountCreateWithoutPatientsInput
+}
+
+input AccountCreateOrConnectWithoutOrdersInput {
+  create: AccountCreateWithoutOrdersInput!
+  where: AccountWhereUniqueInput!
+}
+
+input AccountCreateOrConnectWithoutPatientsInput {
+  create: AccountCreateWithoutPatientsInput!
+  where: AccountWhereUniqueInput!
+}
+
+input AccountCreateWithoutOrdersInput {
+  Patients: PatientCreateNestedManyWithoutAccountInput
+  createdAt: DateTime
+  id: String
+  lang: String
+  settings: JSON
+  timezone: String
+  updatedAt: DateTime
+}
+
+input AccountCreateWithoutPatientsInput {
+  Orders: OrderCreateNestedManyWithoutAccountInput
+  createdAt: DateTime
+  id: String
+  lang: String
+  settings: JSON
+  timezone: String
+  updatedAt: DateTime
+}
+
+type AccountMaxAggregate {
+  createdAt: DateTime
+  id: String
+  lang: String
+  timezone: String
+  updatedAt: DateTime
+}
+
+type AccountMinAggregate {
+  createdAt: DateTime
+  id: String
+  lang: String
+  timezone: String
+  updatedAt: DateTime
+}
+
+input AccountRelationFilter {
+  is: AccountWhereInput
+  isNot: AccountWhereInput
+}
+
+input AccountUpdateOneWithoutOrdersInput {
+  connect: AccountWhereUniqueInput
+  connectOrCreate: AccountCreateOrConnectWithoutOrdersInput
+  create: AccountCreateWithoutOrdersInput
+  delete: Boolean
+  disconnect: Boolean
+  update: AccountUpdateWithoutOrdersInput
+  upsert: AccountUpsertWithoutOrdersInput
+}
+
+input AccountUpdateOneWithoutPatientsInput {
+  connect: AccountWhereUniqueInput
+  connectOrCreate: AccountCreateOrConnectWithoutPatientsInput
+  create: AccountCreateWithoutPatientsInput
+  delete: Boolean
+  disconnect: Boolean
+  update: AccountUpdateWithoutPatientsInput
+  upsert: AccountUpsertWithoutPatientsInput
+}
+
+input AccountUpdateWithoutOrdersInput {
+  Patients: PatientUpdateManyWithoutAccountInput
+  createdAt: DateTime
+  id: String
+  lang: String
+  settings: JSON
+  timezone: String
+  updatedAt: DateTime
+}
+
+input AccountUpdateWithoutPatientsInput {
+  Orders: OrderUpdateManyWithoutAccountInput
+  createdAt: DateTime
+  id: String
+  lang: String
+  settings: JSON
+  timezone: String
+  updatedAt: DateTime
+}
+
+input AccountUpsertWithoutOrdersInput {
+  create: AccountCreateWithoutOrdersInput!
+  update: AccountUpdateWithoutOrdersInput!
+}
+
+input AccountUpsertWithoutPatientsInput {
+  create: AccountCreateWithoutPatientsInput!
+  update: AccountUpdateWithoutPatientsInput!
+}
+
+input AccountWhereInput {
+  AND: [AccountWhereInput!]
+  NOT: [AccountWhereInput!]
+  OR: [AccountWhereInput!]
+  Orders: OrderListRelationFilter
+  Patients: PatientListRelationFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  lang: StringFilter
+  settings: JsonFilter
+  timezone: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input AccountWhereUniqueInput {
+  id: String
+}
+
+input BoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input CreateAccountInput {
+  Orders: OrderUncheckedCreateNestedManyWithoutAccountInput
+  Patients: PatientUncheckedCreateNestedManyWithoutAccountInput
+  createdAt: DateTime
+  id: String
+  lang: String
+  settings: JSON
+  timezone: String
+  updatedAt: DateTime
+}
+
+input CreateOrderInput {
+  accountId: String
+  createdAt: DateTime
+  id: String
+  patientId: String!
+  status: OrderStatus
+  testId: String!
+  updatedAt: DateTime
+}
+
+input CreatePatientInput {
+  Orders: OrderUncheckedCreateNestedManyWithoutPatientInput
+  accountId: String
+  birthDate: DateTime!
+  createdAt: DateTime
+  email: String
+  ethnicity: Ethnicity
+  firstName: String!
+  gender: Gender
+  id: String
+  lang: String
+  lastName: String!
+  mrn: String!
+  notes: String
+  phone: String
+  removed: Boolean
+  timezone: String
+  updatedAt: DateTime
+}
+
+input CreateTestInput {
+  Order: OrderUncheckedCreateNestedManyWithoutTestInput
+  description: String!
+  id: String
+  name: String!
+  status: TestStatus!
+  type: TestType!
+}
+
+input CreateUserInput {
+  createdAt: DateTime
+  externalId: String
+  id: String
+  lang: String
+  settings: JSON
+  timezone: String
+  updatedAt: DateTime
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input DateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeFilter
+  notIn: [DateTime!]
+}
+
+input EnumEthnicityNullableFilter {
+  equals: Ethnicity
+  in: [Ethnicity!]
+  not: NestedEnumEthnicityNullableFilter
+  notIn: [Ethnicity!]
+}
+
+input EnumGenderFilter {
+  equals: Gender
+  in: [Gender!]
+  not: NestedEnumGenderFilter
+  notIn: [Gender!]
+}
+
+input EnumOrderStatusFilter {
+  equals: OrderStatus
+  in: [OrderStatus!]
+  not: NestedEnumOrderStatusFilter
+  notIn: [OrderStatus!]
+}
+
+input EnumTestStatusFilter {
+  equals: TestStatus
+  in: [TestStatus!]
+  not: NestedEnumTestStatusFilter
+  notIn: [TestStatus!]
+}
+
+input EnumTestTypeFilter {
+  equals: TestType
+  in: [TestType!]
+  not: NestedEnumTestTypeFilter
+  notIn: [TestType!]
+}
+
+enum Ethnicity {
+  AMERICAN_INDIAN_OR_ALASKA_NATIVE
+  ASIAN
+  BLACK_AFRICAN_AMERICAN
+  HISPANIC_OR_LATINO
+  NATIVE_HAWAIIAN_OR_PACIFIC_ISLANDER
+  UNKNOWN
+  WHITE
+}
+
+enum Gender {
+  FEMALE
+  MALE
+  OTHER
+  UNKNOWN
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+input JsonFilter {
+  equals: JSON
+  not: JSON
+}
+
+type Mutation {
+  createAccount(createAccountInput: CreateAccountInput!): Account!
+  createOrder(createOrderInput: CreateOrderInput!): Order!
+  createPatient(createPatientInput: CreatePatientInput!): Patient!
+  createTest(createTestInput: CreateTestInput!): Test!
+  createUser(createUserInput: CreateUserInput!): User!
+  removePatient(id: String!): Patient!
+  updateAccount(updateAccountInput: UpdateAccountInput!): Account!
+  updateOrder(updateOrderInput: UpdateOrderInput!): Order!
+  updatePatient(updatePatientInput: UpdatePatientInput!): Patient!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+}
+
+input NestedBoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input NestedDateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeFilter
+  notIn: [DateTime!]
+}
+
+input NestedEnumEthnicityNullableFilter {
+  equals: Ethnicity
+  in: [Ethnicity!]
+  not: NestedEnumEthnicityNullableFilter
+  notIn: [Ethnicity!]
+}
+
+input NestedEnumGenderFilter {
+  equals: Gender
+  in: [Gender!]
+  not: NestedEnumGenderFilter
+  notIn: [Gender!]
+}
+
+input NestedEnumOrderStatusFilter {
+  equals: OrderStatus
+  in: [OrderStatus!]
+  not: NestedEnumOrderStatusFilter
+  notIn: [OrderStatus!]
+}
+
+input NestedEnumTestStatusFilter {
+  equals: TestStatus
+  in: [TestStatus!]
+  not: NestedEnumTestStatusFilter
+  notIn: [TestStatus!]
+}
+
+input NestedEnumTestTypeFilter {
+  equals: TestType
+  in: [TestType!]
+  not: NestedEnumTestTypeFilter
+  notIn: [TestType!]
+}
+
+input NestedStringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input NestedStringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringNullableFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+type Order {
+  Account: Account
+  Patient: Patient!
+  Test: Test!
+  accountId: String
+  createdAt: DateTime!
+  id: ID!
+  patientId: String!
+  status: OrderStatus!
+  testId: String!
+  updatedAt: DateTime!
+}
+
+type OrderCountAggregate {
+  _all: Int!
+  accountId: Int!
+  createdAt: Int!
+  id: Int!
+  patientId: Int!
+  status: Int!
+  testId: Int!
+  updatedAt: Int!
+}
+
+input OrderCreateManyAccountInput {
+  createdAt: DateTime
+  id: String
+  patientId: String!
+  status: OrderStatus
+  testId: String!
+  updatedAt: DateTime
+}
+
+input OrderCreateManyAccountInputEnvelope {
+  data: [OrderCreateManyAccountInput!]!
+  skipDuplicates: Boolean
+}
+
+input OrderCreateManyPatientInput {
+  accountId: String
+  createdAt: DateTime
+  id: String
+  status: OrderStatus
+  testId: String!
+  updatedAt: DateTime
+}
+
+input OrderCreateManyPatientInputEnvelope {
+  data: [OrderCreateManyPatientInput!]!
+  skipDuplicates: Boolean
+}
+
+input OrderCreateManyTestInput {
+  accountId: String
+  createdAt: DateTime
+  id: String
+  patientId: String!
+  status: OrderStatus
+  updatedAt: DateTime
+}
+
+input OrderCreateManyTestInputEnvelope {
+  data: [OrderCreateManyTestInput!]!
+  skipDuplicates: Boolean
+}
+
+input OrderCreateNestedManyWithoutAccountInput {
+  connect: [OrderWhereUniqueInput!]
+  connectOrCreate: [OrderCreateOrConnectWithoutAccountInput!]
+  create: [OrderCreateWithoutAccountInput!]
+  createMany: OrderCreateManyAccountInputEnvelope
+}
+
+input OrderCreateNestedManyWithoutPatientInput {
+  connect: [OrderWhereUniqueInput!]
+  connectOrCreate: [OrderCreateOrConnectWithoutPatientInput!]
+  create: [OrderCreateWithoutPatientInput!]
+  createMany: OrderCreateManyPatientInputEnvelope
+}
+
+input OrderCreateOrConnectWithoutAccountInput {
+  create: OrderCreateWithoutAccountInput!
+  where: OrderWhereUniqueInput!
+}
+
+input OrderCreateOrConnectWithoutPatientInput {
+  create: OrderCreateWithoutPatientInput!
+  where: OrderWhereUniqueInput!
+}
+
+input OrderCreateOrConnectWithoutTestInput {
+  create: OrderCreateWithoutTestInput!
+  where: OrderWhereUniqueInput!
+}
+
+input OrderCreateWithoutAccountInput {
+  Patient: PatientCreateNestedOneWithoutOrdersInput!
+  Test: TestCreateNestedOneWithoutOrderInput!
+  createdAt: DateTime
+  id: String
+  status: OrderStatus
+  updatedAt: DateTime
+}
+
+input OrderCreateWithoutPatientInput {
+  Account: AccountCreateNestedOneWithoutOrdersInput
+  Test: TestCreateNestedOneWithoutOrderInput!
+  createdAt: DateTime
+  id: String
+  status: OrderStatus
+  updatedAt: DateTime
+}
+
+input OrderCreateWithoutTestInput {
+  Account: AccountCreateNestedOneWithoutOrdersInput
+  Patient: PatientCreateNestedOneWithoutOrdersInput!
+  createdAt: DateTime
+  id: String
+  status: OrderStatus
+  updatedAt: DateTime
+}
+
+input OrderListRelationFilter {
+  every: OrderWhereInput
+  none: OrderWhereInput
+  some: OrderWhereInput
+}
+
+type OrderMaxAggregate {
+  accountId: String
+  createdAt: DateTime
+  id: String
+  patientId: String
+  status: OrderStatus
+  testId: String
+  updatedAt: DateTime
+}
+
+type OrderMinAggregate {
+  accountId: String
+  createdAt: DateTime
+  id: String
+  patientId: String
+  status: OrderStatus
+  testId: String
+  updatedAt: DateTime
+}
+
+input OrderScalarWhereInput {
+  AND: [OrderScalarWhereInput!]
+  NOT: [OrderScalarWhereInput!]
+  OR: [OrderScalarWhereInput!]
+  accountId: StringNullableFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  patientId: StringFilter
+  status: EnumOrderStatusFilter
+  testId: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+enum OrderStatus {
+  CANCELED
+  COMPLETED
+  PENDING
+  PROCESSING
+}
+
+input OrderUncheckedCreateNestedManyWithoutAccountInput {
+  connect: [OrderWhereUniqueInput!]
+  connectOrCreate: [OrderCreateOrConnectWithoutAccountInput!]
+  create: [OrderCreateWithoutAccountInput!]
+  createMany: OrderCreateManyAccountInputEnvelope
+}
+
+input OrderUncheckedCreateNestedManyWithoutPatientInput {
+  connect: [OrderWhereUniqueInput!]
+  connectOrCreate: [OrderCreateOrConnectWithoutPatientInput!]
+  create: [OrderCreateWithoutPatientInput!]
+  createMany: OrderCreateManyPatientInputEnvelope
+}
+
+input OrderUncheckedCreateNestedManyWithoutTestInput {
+  connect: [OrderWhereUniqueInput!]
+  connectOrCreate: [OrderCreateOrConnectWithoutTestInput!]
+  create: [OrderCreateWithoutTestInput!]
+  createMany: OrderCreateManyTestInputEnvelope
+}
+
+input OrderUncheckedUpdateManyWithoutAccountInput {
+  connect: [OrderWhereUniqueInput!]
+  connectOrCreate: [OrderCreateOrConnectWithoutAccountInput!]
+  create: [OrderCreateWithoutAccountInput!]
+  createMany: OrderCreateManyAccountInputEnvelope
+  delete: [OrderWhereUniqueInput!]
+  deleteMany: [OrderScalarWhereInput!]
+  disconnect: [OrderWhereUniqueInput!]
+  set: [OrderWhereUniqueInput!]
+  update: [OrderUpdateWithWhereUniqueWithoutAccountInput!]
+  updateMany: [OrderUpdateManyWithWhereWithoutAccountInput!]
+  upsert: [OrderUpsertWithWhereUniqueWithoutAccountInput!]
+}
+
+input OrderUncheckedUpdateManyWithoutPatientInput {
+  connect: [OrderWhereUniqueInput!]
+  connectOrCreate: [OrderCreateOrConnectWithoutPatientInput!]
+  create: [OrderCreateWithoutPatientInput!]
+  createMany: OrderCreateManyPatientInputEnvelope
+  delete: [OrderWhereUniqueInput!]
+  deleteMany: [OrderScalarWhereInput!]
+  disconnect: [OrderWhereUniqueInput!]
+  set: [OrderWhereUniqueInput!]
+  update: [OrderUpdateWithWhereUniqueWithoutPatientInput!]
+  updateMany: [OrderUpdateManyWithWhereWithoutPatientInput!]
+  upsert: [OrderUpsertWithWhereUniqueWithoutPatientInput!]
+}
+
+input OrderUpdateManyMutationInput {
+  createdAt: DateTime
+  id: String
+  status: OrderStatus
+  updatedAt: DateTime
+}
+
+input OrderUpdateManyWithWhereWithoutAccountInput {
+  data: OrderUpdateManyMutationInput!
+  where: OrderScalarWhereInput!
+}
+
+input OrderUpdateManyWithWhereWithoutPatientInput {
+  data: OrderUpdateManyMutationInput!
+  where: OrderScalarWhereInput!
+}
+
+input OrderUpdateManyWithoutAccountInput {
+  connect: [OrderWhereUniqueInput!]
+  connectOrCreate: [OrderCreateOrConnectWithoutAccountInput!]
+  create: [OrderCreateWithoutAccountInput!]
+  createMany: OrderCreateManyAccountInputEnvelope
+  delete: [OrderWhereUniqueInput!]
+  deleteMany: [OrderScalarWhereInput!]
+  disconnect: [OrderWhereUniqueInput!]
+  set: [OrderWhereUniqueInput!]
+  update: [OrderUpdateWithWhereUniqueWithoutAccountInput!]
+  updateMany: [OrderUpdateManyWithWhereWithoutAccountInput!]
+  upsert: [OrderUpsertWithWhereUniqueWithoutAccountInput!]
+}
+
+input OrderUpdateManyWithoutPatientInput {
+  connect: [OrderWhereUniqueInput!]
+  connectOrCreate: [OrderCreateOrConnectWithoutPatientInput!]
+  create: [OrderCreateWithoutPatientInput!]
+  createMany: OrderCreateManyPatientInputEnvelope
+  delete: [OrderWhereUniqueInput!]
+  deleteMany: [OrderScalarWhereInput!]
+  disconnect: [OrderWhereUniqueInput!]
+  set: [OrderWhereUniqueInput!]
+  update: [OrderUpdateWithWhereUniqueWithoutPatientInput!]
+  updateMany: [OrderUpdateManyWithWhereWithoutPatientInput!]
+  upsert: [OrderUpsertWithWhereUniqueWithoutPatientInput!]
+}
+
+input OrderUpdateWithWhereUniqueWithoutAccountInput {
+  data: OrderUpdateWithoutAccountInput!
+  where: OrderWhereUniqueInput!
+}
+
+input OrderUpdateWithWhereUniqueWithoutPatientInput {
+  data: OrderUpdateWithoutPatientInput!
+  where: OrderWhereUniqueInput!
+}
+
+input OrderUpdateWithoutAccountInput {
+  Patient: PatientUpdateOneRequiredWithoutOrdersInput
+  Test: TestUpdateOneRequiredWithoutOrderInput
+  createdAt: DateTime
+  id: String
+  status: OrderStatus
+  updatedAt: DateTime
+}
+
+input OrderUpdateWithoutPatientInput {
+  Account: AccountUpdateOneWithoutOrdersInput
+  Test: TestUpdateOneRequiredWithoutOrderInput
+  createdAt: DateTime
+  id: String
+  status: OrderStatus
+  updatedAt: DateTime
+}
+
+input OrderUpsertWithWhereUniqueWithoutAccountInput {
+  create: OrderCreateWithoutAccountInput!
+  update: OrderUpdateWithoutAccountInput!
+  where: OrderWhereUniqueInput!
+}
+
+input OrderUpsertWithWhereUniqueWithoutPatientInput {
+  create: OrderCreateWithoutPatientInput!
+  update: OrderUpdateWithoutPatientInput!
+  where: OrderWhereUniqueInput!
+}
+
+input OrderWhereInput {
+  AND: [OrderWhereInput!]
+  Account: AccountRelationFilter
+  NOT: [OrderWhereInput!]
+  OR: [OrderWhereInput!]
+  Patient: PatientRelationFilter
+  Test: TestRelationFilter
+  accountId: StringNullableFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  patientId: StringFilter
+  status: EnumOrderStatusFilter
+  testId: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input OrderWhereUniqueInput {
+  id: String
+}
+
+type Patient {
+  Account: Account
+  Orders: [Order!]
+  _count: PatientCount!
+  accountId: String
+  birthDate: DateTime!
+  createdAt: DateTime!
+  email: String
+  ethnicity: Ethnicity
+  firstName: String!
+  gender: Gender!
+  id: ID!
+  lang: String!
+  lastName: String!
+  mrn: String!
+  notes: String
+  phone: String
+  removed: Boolean!
+  timezone: String!
+  updatedAt: DateTime!
+}
+
+type PatientCount {
+  Orders: Int!
+}
+
+type PatientCountAggregate {
+  _all: Int!
+  accountId: Int!
+  birthDate: Int!
+  createdAt: Int!
+  email: Int!
+  ethnicity: Int!
+  firstName: Int!
+  gender: Int!
+  id: Int!
+  lang: Int!
+  lastName: Int!
+  mrn: Int!
+  notes: Int!
+  phone: Int!
+  removed: Int!
+  timezone: Int!
+  updatedAt: Int!
+}
+
+input PatientCreateManyAccountInput {
+  birthDate: DateTime!
+  createdAt: DateTime
+  email: String
+  ethnicity: Ethnicity
+  firstName: String!
+  gender: Gender
+  id: String
+  lang: String
+  lastName: String!
+  mrn: String!
+  notes: String
+  phone: String
+  removed: Boolean
+  timezone: String
+  updatedAt: DateTime
+}
+
+input PatientCreateManyAccountInputEnvelope {
+  data: [PatientCreateManyAccountInput!]!
+  skipDuplicates: Boolean
+}
+
+input PatientCreateNestedManyWithoutAccountInput {
+  connect: [PatientWhereUniqueInput!]
+  connectOrCreate: [PatientCreateOrConnectWithoutAccountInput!]
+  create: [PatientCreateWithoutAccountInput!]
+  createMany: PatientCreateManyAccountInputEnvelope
+}
+
+input PatientCreateNestedOneWithoutOrdersInput {
+  connect: PatientWhereUniqueInput
+  connectOrCreate: PatientCreateOrConnectWithoutOrdersInput
+  create: PatientCreateWithoutOrdersInput
+}
+
+input PatientCreateOrConnectWithoutAccountInput {
+  create: PatientCreateWithoutAccountInput!
+  where: PatientWhereUniqueInput!
+}
+
+input PatientCreateOrConnectWithoutOrdersInput {
+  create: PatientCreateWithoutOrdersInput!
+  where: PatientWhereUniqueInput!
+}
+
+input PatientCreateWithoutAccountInput {
+  Orders: OrderCreateNestedManyWithoutPatientInput
+  birthDate: DateTime!
+  createdAt: DateTime
+  email: String
+  ethnicity: Ethnicity
+  firstName: String!
+  gender: Gender
+  id: String
+  lang: String
+  lastName: String!
+  mrn: String!
+  notes: String
+  phone: String
+  removed: Boolean
+  timezone: String
+  updatedAt: DateTime
+}
+
+input PatientCreateWithoutOrdersInput {
+  Account: AccountCreateNestedOneWithoutPatientsInput
+  birthDate: DateTime!
+  createdAt: DateTime
+  email: String
+  ethnicity: Ethnicity
+  firstName: String!
+  gender: Gender
+  id: String
+  lang: String
+  lastName: String!
+  mrn: String!
+  notes: String
+  phone: String
+  removed: Boolean
+  timezone: String
+  updatedAt: DateTime
+}
+
+input PatientListRelationFilter {
+  every: PatientWhereInput
+  none: PatientWhereInput
+  some: PatientWhereInput
+}
+
+type PatientMaxAggregate {
+  accountId: String
+  birthDate: DateTime
+  createdAt: DateTime
+  email: String
+  ethnicity: Ethnicity
+  firstName: String
+  gender: Gender
+  id: String
+  lang: String
+  lastName: String
+  mrn: String
+  notes: String
+  phone: String
+  removed: Boolean
+  timezone: String
+  updatedAt: DateTime
+}
+
+type PatientMinAggregate {
+  accountId: String
+  birthDate: DateTime
+  createdAt: DateTime
+  email: String
+  ethnicity: Ethnicity
+  firstName: String
+  gender: Gender
+  id: String
+  lang: String
+  lastName: String
+  mrn: String
+  notes: String
+  phone: String
+  removed: Boolean
+  timezone: String
+  updatedAt: DateTime
+}
+
+input PatientRelationFilter {
+  is: PatientWhereInput
+  isNot: PatientWhereInput
+}
+
+input PatientScalarWhereInput {
+  AND: [PatientScalarWhereInput!]
+  NOT: [PatientScalarWhereInput!]
+  OR: [PatientScalarWhereInput!]
+  accountId: StringNullableFilter
+  birthDate: DateTimeFilter
+  createdAt: DateTimeFilter
+  email: StringNullableFilter
+  ethnicity: EnumEthnicityNullableFilter
+  firstName: StringFilter
+  gender: EnumGenderFilter
+  id: StringFilter
+  lang: StringFilter
+  lastName: StringFilter
+  mrn: StringFilter
+  notes: StringNullableFilter
+  phone: StringNullableFilter
+  removed: BoolFilter
+  timezone: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input PatientUncheckedCreateNestedManyWithoutAccountInput {
+  connect: [PatientWhereUniqueInput!]
+  connectOrCreate: [PatientCreateOrConnectWithoutAccountInput!]
+  create: [PatientCreateWithoutAccountInput!]
+  createMany: PatientCreateManyAccountInputEnvelope
+}
+
+input PatientUncheckedUpdateManyWithoutAccountInput {
+  connect: [PatientWhereUniqueInput!]
+  connectOrCreate: [PatientCreateOrConnectWithoutAccountInput!]
+  create: [PatientCreateWithoutAccountInput!]
+  createMany: PatientCreateManyAccountInputEnvelope
+  delete: [PatientWhereUniqueInput!]
+  deleteMany: [PatientScalarWhereInput!]
+  disconnect: [PatientWhereUniqueInput!]
+  set: [PatientWhereUniqueInput!]
+  update: [PatientUpdateWithWhereUniqueWithoutAccountInput!]
+  updateMany: [PatientUpdateManyWithWhereWithoutAccountInput!]
+  upsert: [PatientUpsertWithWhereUniqueWithoutAccountInput!]
+}
+
+input PatientUpdateManyMutationInput {
+  birthDate: DateTime
+  createdAt: DateTime
+  email: String
+  ethnicity: Ethnicity
+  firstName: String
+  gender: Gender
+  id: String
+  lang: String
+  lastName: String
+  mrn: String
+  notes: String
+  phone: String
+  removed: Boolean
+  timezone: String
+  updatedAt: DateTime
+}
+
+input PatientUpdateManyWithWhereWithoutAccountInput {
+  data: PatientUpdateManyMutationInput!
+  where: PatientScalarWhereInput!
+}
+
+input PatientUpdateManyWithoutAccountInput {
+  connect: [PatientWhereUniqueInput!]
+  connectOrCreate: [PatientCreateOrConnectWithoutAccountInput!]
+  create: [PatientCreateWithoutAccountInput!]
+  createMany: PatientCreateManyAccountInputEnvelope
+  delete: [PatientWhereUniqueInput!]
+  deleteMany: [PatientScalarWhereInput!]
+  disconnect: [PatientWhereUniqueInput!]
+  set: [PatientWhereUniqueInput!]
+  update: [PatientUpdateWithWhereUniqueWithoutAccountInput!]
+  updateMany: [PatientUpdateManyWithWhereWithoutAccountInput!]
+  upsert: [PatientUpsertWithWhereUniqueWithoutAccountInput!]
+}
+
+input PatientUpdateOneRequiredWithoutOrdersInput {
+  connect: PatientWhereUniqueInput
+  connectOrCreate: PatientCreateOrConnectWithoutOrdersInput
+  create: PatientCreateWithoutOrdersInput
+  update: PatientUpdateWithoutOrdersInput
+  upsert: PatientUpsertWithoutOrdersInput
+}
+
+input PatientUpdateWithWhereUniqueWithoutAccountInput {
+  data: PatientUpdateWithoutAccountInput!
+  where: PatientWhereUniqueInput!
+}
+
+input PatientUpdateWithoutAccountInput {
+  Orders: OrderUpdateManyWithoutPatientInput
+  birthDate: DateTime
+  createdAt: DateTime
+  email: String
+  ethnicity: Ethnicity
+  firstName: String
+  gender: Gender
+  id: String
+  lang: String
+  lastName: String
+  mrn: String
+  notes: String
+  phone: String
+  removed: Boolean
+  timezone: String
+  updatedAt: DateTime
+}
+
+input PatientUpdateWithoutOrdersInput {
+  Account: AccountUpdateOneWithoutPatientsInput
+  birthDate: DateTime
+  createdAt: DateTime
+  email: String
+  ethnicity: Ethnicity
+  firstName: String
+  gender: Gender
+  id: String
+  lang: String
+  lastName: String
+  mrn: String
+  notes: String
+  phone: String
+  removed: Boolean
+  timezone: String
+  updatedAt: DateTime
+}
+
+input PatientUpsertWithWhereUniqueWithoutAccountInput {
+  create: PatientCreateWithoutAccountInput!
+  update: PatientUpdateWithoutAccountInput!
+  where: PatientWhereUniqueInput!
+}
+
+input PatientUpsertWithoutOrdersInput {
+  create: PatientCreateWithoutOrdersInput!
+  update: PatientUpdateWithoutOrdersInput!
+}
+
+input PatientWhereInput {
+  AND: [PatientWhereInput!]
+  Account: AccountRelationFilter
+  NOT: [PatientWhereInput!]
+  OR: [PatientWhereInput!]
+  Orders: OrderListRelationFilter
+  accountId: StringNullableFilter
+  birthDate: DateTimeFilter
+  createdAt: DateTimeFilter
+  email: StringNullableFilter
+  ethnicity: EnumEthnicityNullableFilter
+  firstName: StringFilter
+  gender: EnumGenderFilter
+  id: StringFilter
+  lang: StringFilter
+  lastName: StringFilter
+  mrn: StringFilter
+  notes: StringNullableFilter
+  phone: StringNullableFilter
+  removed: BoolFilter
+  timezone: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input PatientWhereUniqueInput {
+  id: String
+}
+
+type Query {
+  account(id: String!): Account!
+  accounts: [Account!]!
+  order(id: String!): Order!
+  orders: [Order!]!
+  patient(id: String!): Patient
+  patients(where: PatientWhereInput): [Patient!]!
+  test(id: String!): Test!
+  tests(where: TestWhereInput): [Test!]!
+  user(id: Int!): User!
+  users: [User!]!
+}
+
+enum QueryMode {
+  default
+  insensitive
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: NestedStringFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: NestedStringNullableFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+type Test {
+  Order: [Order!]
+  _count: TestCount!
+  description: String!
+  id: ID!
+  name: String!
+  status: TestStatus!
+  type: TestType!
+}
+
+type TestCount {
+  Order: Int!
+}
+
+type TestCountAggregate {
+  _all: Int!
+  description: Int!
+  id: Int!
+  name: Int!
+  status: Int!
+  type: Int!
+}
+
+input TestCreateNestedOneWithoutOrderInput {
+  connect: TestWhereUniqueInput
+  connectOrCreate: TestCreateOrConnectWithoutOrderInput
+  create: TestCreateWithoutOrderInput
+}
+
+input TestCreateOrConnectWithoutOrderInput {
+  create: TestCreateWithoutOrderInput!
+  where: TestWhereUniqueInput!
+}
+
+input TestCreateWithoutOrderInput {
+  description: String!
+  id: String
+  name: String!
+  status: TestStatus!
+  type: TestType!
+}
+
+type TestMaxAggregate {
+  description: String
+  id: String
+  name: String
+  status: TestStatus
+  type: TestType
+}
+
+type TestMinAggregate {
+  description: String
+  id: String
+  name: String
+  status: TestStatus
+  type: TestType
+}
+
+input TestRelationFilter {
+  is: TestWhereInput
+  isNot: TestWhereInput
+}
+
+enum TestStatus {
+  AVAILABLE
+  UNAVAILABLE
+}
+
+enum TestType {
+  CARRIER
+  DIAGNOSTIC
+  NEWBORN_SCREENING
+  PHARMACOGENETICS
+  PREIMPLANTATION
+  PRENATAL
+  PRESYMPTOMATIC
+}
+
+input TestUpdateOneRequiredWithoutOrderInput {
+  connect: TestWhereUniqueInput
+  connectOrCreate: TestCreateOrConnectWithoutOrderInput
+  create: TestCreateWithoutOrderInput
+  update: TestUpdateWithoutOrderInput
+  upsert: TestUpsertWithoutOrderInput
+}
+
+input TestUpdateWithoutOrderInput {
+  description: String
+  id: String
+  name: String
+  status: TestStatus
+  type: TestType
+}
+
+input TestUpsertWithoutOrderInput {
+  create: TestCreateWithoutOrderInput!
+  update: TestUpdateWithoutOrderInput!
+}
+
+input TestWhereInput {
+  AND: [TestWhereInput!]
+  NOT: [TestWhereInput!]
+  OR: [TestWhereInput!]
+  Order: OrderListRelationFilter
+  description: StringFilter
+  id: StringFilter
+  name: StringFilter
+  status: EnumTestStatusFilter
+  type: EnumTestTypeFilter
+}
+
+input TestWhereUniqueInput {
+  id: String
+}
+
+input UpdateAccountInput {
+  Orders: OrderUncheckedUpdateManyWithoutAccountInput
+  Patients: PatientUncheckedUpdateManyWithoutAccountInput
+  createdAt: DateTime
+  id: String
+  lang: String
+  settings: JSON
+  timezone: String
+  updatedAt: DateTime
+}
+
+input UpdateOrderInput {
+  accountId: String
+  createdAt: DateTime
+  id: String!
+  patientId: String
+  status: OrderStatus
+  testId: String
+  updatedAt: DateTime
+}
+
+input UpdatePatientInput {
+  Orders: OrderUncheckedUpdateManyWithoutPatientInput
+  accountId: String
+  birthDate: DateTime
+  createdAt: DateTime
+  email: String
+  ethnicity: Ethnicity
+  firstName: String
+  gender: Gender
+  id: String!
+  lang: String
+  lastName: String
+  mrn: String
+  notes: String
+  phone: String
+  removed: Boolean
+  timezone: String
+  updatedAt: DateTime
+}
+
+input UpdateUserInput {
+  createdAt: DateTime
+  externalId: String
+  id: String
+  lang: String
+  settings: JSON
+  timezone: String
+  updatedAt: DateTime
+}
+
+type User {
+  createdAt: DateTime!
+  externalId: String
+  id: ID!
+  lang: String!
+  settings: JSON!
+  timezone: String!
+  updatedAt: DateTime!
+}
+
+type UserCountAggregate {
+  _all: Int!
+  createdAt: Int!
+  externalId: Int!
+  id: Int!
+  lang: Int!
+  settings: Int!
+  timezone: Int!
+  updatedAt: Int!
+}
+
+type UserMaxAggregate {
+  createdAt: DateTime
+  externalId: String
+  id: String
+  lang: String
+  timezone: String
+  updatedAt: DateTime
+}
+
+type UserMinAggregate {
+  createdAt: DateTime
+  externalId: String
+  id: String
+  lang: String
+  timezone: String
+  updatedAt: DateTime
+}

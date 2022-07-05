@@ -1,0 +1,134 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator nestgraphql {
+  provider           = "node node_modules/prisma-nestjs-graphql"
+  output             = "../src/@generated/prisma-nestjs-graphql"
+  noAtomicOperations = true
+  purgeOutput        = true
+  emitSingle         = true
+}
+
+generator nestgraphql_to_app {
+  provider           = "node node_modules/prisma-nestjs-graphql"
+  output             = "../../app/src/@generated/prisma-nestjs-graphql"
+  noAtomicOperations = true
+  purgeOutput        = true
+  emitSingle         = true
+}
+
+model Account {
+  id        String    @id @default(cuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  timezone  String    @default("America/Los_Angeles") // IANA timezone code
+  lang      String    @default("en-US") // ISO-639-1 code (with optional ISO 3166‑1 country code)
+  settings  Json      @default("{}")
+  Patients  Patient[]
+  Orders  Order[]
+}
+
+// Note the User <-> Account relationship can change (by switching accounts) and is managed by the external Auth provider
+model User {
+  id         String   @id @default(cuid())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  externalId String?  @unique
+  timezone   String   @default("America/Los_Angeles") // IANA timezone code
+  lang       String   @default("en-US") // ISO-639-1 code (with optional ISO 3166‑1 country code)
+  settings   Json     @default("{}")
+}
+
+enum Gender {
+  UNKNOWN
+  MALE
+  FEMALE
+  OTHER
+}
+
+model Patient {
+  id        String     @id @default(cuid())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  accountId String?
+  Account   Account?    @relation(fields: [accountId], references: [id])
+  firstName String
+  lastName  String
+  mrn       String
+  birthDate DateTime   @db.Date
+  ethnicity Ethnicity?
+  timezone  String     @default("America/Los_Angeles") // IANA timezone code
+  phone     String?
+  email     String?
+  notes     String?
+  gender    Gender     @default(UNKNOWN)
+  lang      String     @default("en-US") // ISO-639-1 code (with optional ISO 3166‑1 country code)
+  Orders    Order[]
+  removed   Boolean    @default(false)
+
+  @@unique([id])
+}
+
+enum Ethnicity {
+  AMERICAN_INDIAN_OR_ALASKA_NATIVE
+  ASIAN
+  BLACK_AFRICAN_AMERICAN
+  HISPANIC_OR_LATINO
+  NATIVE_HAWAIIAN_OR_PACIFIC_ISLANDER
+  WHITE
+  UNKNOWN
+}
+
+enum TestType {
+  DIAGNOSTIC
+  PRESYMPTOMATIC
+  CARRIER
+  PHARMACOGENETICS
+  PRENATAL
+  NEWBORN_SCREENING
+  PREIMPLANTATION
+}
+
+enum TestStatus {
+  AVAILABLE
+  UNAVAILABLE
+}
+
+model Test {
+  id          String     @id @default(cuid())
+  type        TestType
+  name        String
+  description String
+  status      TestStatus
+
+  Order Order[]
+  @@unique([id])
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  CANCELED
+}
+
+model Order {
+  id        String      @id @default(cuid())
+  accountId String?
+  Account   Account?    @relation(fields: [accountId], references: [id])
+  testId    String
+  Test      Test        @relation(fields: [testId], references: [id])
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  status    OrderStatus @default(PENDING)
+  patientId String
+  Patient   Patient     @relation(fields: [patientId], references: [id])
+
+  @@unique([id])
+}

@@ -1,0 +1,9 @@
+version: '3.7'
+services:
+  nest-tech-exercise-api:
+    container_name: nest-tech-exercise-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - ${PORT}:8000

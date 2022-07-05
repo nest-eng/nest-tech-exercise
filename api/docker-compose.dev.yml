@@ -1,0 +1,31 @@
+version: '3.7'
+services:
+  nest-tech-exercise-api:
+    build:
+      target: builder
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - 8001:9229
+      - 8002:5555
+    command: npx nest start --watch
+    depends_on:
+      - nest-tech-exercise-postgres
+    env_file:
+      - .env
+
+  nest-tech-exercise-postgres:
+    container_name: tech_exercise_postgres
+    image: postgres
+    restart: always
+    ports:
+      - 8003:5432
+    env_file:
+      - .env
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  postgres:
+    name: nest-tech-exercise
