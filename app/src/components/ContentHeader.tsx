@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { Box, Divider, Stack, StackProps } from '@mui/material'
+import { Box, Divider, Stack, StackProps, alpha } from '@mui/material'
 
 export default function ContentHeader(
   props: StackProps & { actions?: ReactNode },
@@ -9,7 +9,8 @@ export default function ContentHeader(
       <Stack
         sx={{
           backdropFilter: 'blur(5px)',
-          bgcolor: `rgba(255,255,255,.5)`,
+          bgcolor: ({ palette }) =>
+            alpha(palette.background.paper, 0.85),
           mt: -4,
           mx: -4,
           position: 'sticky',
