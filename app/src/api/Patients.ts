@@ -130,11 +130,9 @@ const GQL = {
         phone
         createdAt
         updatedAt
-        # EXERCISE: NEH-6 task answer begin
-        # Orders {
-        #   id
-        # }
-        # EXERCISE: NEH-6 task answer end
+        Orders {
+          id
+        }
       }
     }
   `,
