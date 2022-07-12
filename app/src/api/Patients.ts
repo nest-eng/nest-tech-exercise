@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react'
 import {
   CreatePatientInput,
   Patient,
+  PatientWhereInput,
   UpdatePatientInput,
 } from '@generated/graphql'
-import { PatientWhereInput } from '@generated/prisma-nestjs-graphql'
 
 const getPatientModel = (data: Patient) => new PatientModel(data)
 

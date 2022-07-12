@@ -15,14 +15,6 @@ generator nestgraphql {
   emitSingle         = true
 }
 
-generator nestgraphql_to_app {
-  provider           = "node node_modules/prisma-nestjs-graphql"
-  output             = "../../app/src/@generated/prisma-nestjs-graphql"
-  noAtomicOperations = true
-  purgeOutput        = true
-  emitSingle         = true
-}
-
 model Account {
   id        String    @id @default(cuid())
   createdAt DateTime  @default(now())
